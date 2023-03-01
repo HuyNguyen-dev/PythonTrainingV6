@@ -17,5 +17,8 @@ class User(db.Model):
     created_on = Column(DateTime,default=None)
     modified_on = Column(DateTime,default=None)
 
+    def __str__(self) -> str:
+        return self.username
+
 with app.app_context():
     db.create_all()
