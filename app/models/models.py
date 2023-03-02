@@ -1,10 +1,5 @@
-from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, TIMESTAMP,BOOLEAN
 from  app import app,db
-
-from sqlalchemy.orm import declarative_base
-
-Base = declarative_base()
 
 class User(db.Model):
     __tablename__ = "user"
@@ -25,22 +20,6 @@ class User(db.Model):
     def __str__(self) -> str:
         return self.username
     
-class Organization(db.Model):
-    __tablename__ = "organization"
-    id = Column(Integer,primary_key=True, nullable=False,autoincrement=True)
-    username = Column(String(255),nullable=False,unique=True)
-    
-    def __str__(self) -> str:
-        return self.username
-    
-class Test(Base):
-    __tablename__ = "test"
-    id = Column(Integer,primary_key=True, nullable=False,autoincrement=True)
-    username = Column(String(255),nullable=False,unique=True)
-    full_name = Column(String(255),default=None)
-    email = Column(String(255),nullable=False,unique=True)
-    phone_number = Column(String(255),default=None)
-    created_on = Column(DateTime,default=datetime.utcnow)
 
 with app.app_context():
     db.create_all()
